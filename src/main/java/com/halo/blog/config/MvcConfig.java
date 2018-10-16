@@ -1,6 +1,7 @@
 package com.halo.blog.config;
 
 import com.halo.blog.web.intercaptor.InstallInterceptor;
+import com.halo.blog.web.intercaptor.LoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+import javax.annotation.Resource;
 import java.util.Locale;
 
 /**
@@ -31,8 +34,13 @@ import java.util.Locale;
 @ComponentScan(basePackages = "com.halo.blog.web.controller")
 @PropertySource(value = "classpath:application.yml", ignoreResourceNotFound = true, encoding = "UTF-8")
 public class MvcConfig implements WebMvcConfigurer {
-    @Autowired
+
+    @Resource
     private InstallInterceptor installInterceptor;
+
+    @Resource
+    private LoginInterceptor loginInterceptor;
+
 
     /**
      * 注册拦截器
@@ -46,6 +54,15 @@ public class MvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/install")
                 .excludePathPatterns("/install/do")
                 .excludePathPatterns("/static/**");
+
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns("/admin/**")
+                .addPathPatterns("/backup/**")  //备份页面拦截
+                .excludePathPatterns("/admin/login")
+                .excludePathPatterns("/admin/getLogin") //登录的几个页面不拦截
+                .excludePathPatterns("/static/**");
+
+
     }
 
     /**

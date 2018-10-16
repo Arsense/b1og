@@ -14,4 +14,7 @@ public class BaseConstant {
      * 所有设置选项（key,value）
      */
     public static Map<String, String> OPTIONS = new HashMap<>();
+
+
+    public static String USER_SESSION_KEY = "user_session";
 }
