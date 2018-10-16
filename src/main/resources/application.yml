@@ -1,0 +1,38 @@
+server:
+  port: 8091
+spring:
+  #数据库配置
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      # H2database 配置
+      driver-class-name: org.h2.Driver
+      url: jdbc:h2:file:~/clay/clay    #数据库名称
+      username: admin1
+      password: admin1
+  h2:
+    console:
+      settings:
+        web-allow-others: true
+      path: /h2-console   #控制台访问路径
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  #模板配置
+  freemarker:
+      allow-request-override: false
+      cache: false
+      check-template-location: true
+      charset: utf-8
+      content-type: text/html
+      expose-request-attributes: false
+      expose-session-attributes: false
+      expose-spring-macro-helpers: true
+      suffix: .ftl   #解析文件的后缀
+      settings:
+          auto_import: /spring.ftl as spring  #这里也不可以缺
+
+ # 多语言资源文件路径
+  messages:
+      basename: i18n/messages  #一般都这么配置吧
