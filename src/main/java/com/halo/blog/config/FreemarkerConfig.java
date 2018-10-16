@@ -26,6 +26,8 @@ public class FreemarkerConfig {
     @Resource
     private UserService userService;
 
+
+
     /**
      * 前端页面配置
      */
@@ -34,6 +36,8 @@ public class FreemarkerConfig {
         try{
             configuration.setSharedVariable("options", optionsService.findAllOptions());
             configuration.setSharedVariable("user", userService.findUser());
+
+            configuration.setSharedVariable("commonTag", "");
 
         }catch (TemplateModelException e){
             log.error("自定义标签加载失败：{}", e.getMessage());
