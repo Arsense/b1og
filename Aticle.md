@@ -12,7 +12,8 @@
 - 安装基本配置好了
 - 安装成功 进入首页
 - 首页多次不兼容bUG修复
-
+- 10.16
+- 登录拦截器和登录Ok
 
 - https://www.cnblogs.com/best/archive/2016/08/01/5681511.html
 freemark 参考网站

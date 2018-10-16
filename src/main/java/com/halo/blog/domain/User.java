@@ -1,6 +1,7 @@
 package com.halo.blog.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -57,9 +58,25 @@ public class User implements Serializable {
     private Date loginLast;
 
     /**
+     * 登录错误次数记录
+     */
+    @JsonIgnore
+    private Integer loginError = 0;
+
+
+    /**
      * 显示名称
      */
     private String userDisplayName;
+
+
+    public Integer getLoginError() {
+        return loginError;
+    }
+
+    public void setLoginError(Integer loginError) {
+        this.loginError = loginError;
+    }
 
     public String getUserDisplayName() {
         return userDisplayName;
