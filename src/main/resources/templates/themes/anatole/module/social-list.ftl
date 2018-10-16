@@ -32,7 +32,7 @@
     </li>
     </#if>
 
-    <#--<#if options.theme_anatole_sns_dribbble??>-->
+    <#if options.theme_anatole_sns_dribbble??>
     <li>
         <a target="_blank" href="https://dribbble.com/${options.theme_anatole_sns_dribbble}">
             <i class="fa fa-dribbble"></i>
