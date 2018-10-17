@@ -30,6 +30,21 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      *
      * @return List
      */
-    @Query(value = "SELECT * FROM halo_post where post_type='post' ORDER BY post_date DESC LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT * FROM post where post_type='post' ORDER BY post_date DESC LIMIT 5", nativeQuery = true)
     List<Post> findTopFive();
+
+
+
+    /**
+     * 获取所有文章阅读量总和
+     *
+     * @return Long
+     */
+    @Query(value = "select sum(post_views) from post", nativeQuery = true)
+    Long getPostViewsSum();
+
+
+
+
+
 }

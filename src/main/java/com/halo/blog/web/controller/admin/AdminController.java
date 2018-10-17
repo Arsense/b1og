@@ -78,8 +78,6 @@ public class AdminController {
         Long postViewsSum = postService.getPostViews();
         model.addAttribute("postViewsSum", postViewsSum);
 
-
-
         return "admin/admin_index";
     }
 

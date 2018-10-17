@@ -34,4 +34,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> findAllComments() {
         return commentRepository.findAll();
     }
+
+    @Override
+    public List<Comment> findCommentsLatest() {
+        return commentRepository.findTopFive();
+    }
 }

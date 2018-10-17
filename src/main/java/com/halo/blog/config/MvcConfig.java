@@ -3,7 +3,6 @@ package com.halo.blog.config;
 import com.halo.blog.web.intercaptor.InstallInterceptor;
 import com.halo.blog.web.intercaptor.LoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

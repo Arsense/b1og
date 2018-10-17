@@ -67,4 +67,11 @@ public interface PostService {
      */
     List<Post> findPostLatest();
 
+
+    /**
+     * 获取所有文章的阅读量
+     *
+     * @return Long
+     */
+    Long getPostViews();
 }

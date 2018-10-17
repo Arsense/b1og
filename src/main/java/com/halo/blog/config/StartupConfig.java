@@ -2,11 +2,9 @@ package com.halo.blog.config;
 
 import com.halo.blog.enums.BaseConstant;
 import com.halo.blog.service.OptionsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
-
 import javax.annotation.Resource;
 import java.util.Map;
 

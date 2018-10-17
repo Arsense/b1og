@@ -4,7 +4,6 @@ import com.halo.blog.domain.Category;
 import com.halo.blog.mapper.CategoryRepository;
 import com.halo.blog.service.CategoryService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 
 /**

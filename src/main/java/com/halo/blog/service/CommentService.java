@@ -38,4 +38,12 @@ public interface CommentService {
      * @return List
      */
     List<Comment> findAllComments();
+
+
+    /**
+     * 查询最新的前五条评论
+     *
+     * @return List
+     */
+    List<Comment> findCommentsLatest();
 }

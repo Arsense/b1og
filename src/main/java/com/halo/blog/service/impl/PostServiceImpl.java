@@ -64,4 +64,10 @@ public class PostServiceImpl implements PostService{
         return postRepository.findTopFive();
 
     }
+
+    @Override
+    public Long getPostViews() {
+        return postRepository.getPostViewsSum();
+
+    }
 }
