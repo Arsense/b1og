@@ -3,6 +3,8 @@ package com.halo.blog.service;
 import com.halo.blog.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -56,4 +58,13 @@ public interface PostService {
      * @return Post
      */
     Optional<Post> findByPostId(Long postId);
+
+
+    /**
+     * 查询前五条数据
+     *
+     * @return List
+     */
+    List<Post> findPostLatest();
+
 }

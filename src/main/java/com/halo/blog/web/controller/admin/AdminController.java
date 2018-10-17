@@ -5,23 +5,21 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.SecureUtil;
-import cn.hutool.extra.servlet.ServletUtil;
 import com.halo.blog.domain.Comment;
+import com.halo.blog.domain.Logs;
 import com.halo.blog.domain.Post;
 import com.halo.blog.domain.User;
 import com.halo.blog.enums.BaseConstant;
 import com.halo.blog.service.CommentService;
+import com.halo.blog.service.LogsService;
 import com.halo.blog.service.PostService;
 import com.halo.blog.service.UserService;
 import com.halo.blog.tool.JsonResult;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -46,6 +44,8 @@ public class AdminController {
     private PostService postService;
     @Resource
     private CommentService commentService;
+    @Resource
+    private LogsService logsService;
 
 
 
@@ -58,25 +58,25 @@ public class AdminController {
     @GetMapping(value = {"", "/index"})
     public String index(Model model){
 //        //查询评论的条数
-//        Integer commentCount = commentService.findAllComments().size();
-//        model.addAttribute("commentCount", commentCount);
+        Integer commentCount = commentService.findAllComments().size();
+        model.addAttribute("commentCount", commentCount);
 //
 //        //查询最新的文章
-//        List<Post> postsLatest = postService.findPostLatest();
-//        model.addAttribute("postTopFive", postsLatest);
+        List<Post> postsLatest = postService.findPostLatest();
+        model.addAttribute("postTopFive", postsLatest);
 //
 //        //查询最新的日志
-//        List<Logs> logsLatest = logsService.findLogsLatest();
-//        model.addAttribute("logs", logsLatest);
+        List<Logs> logsLatest = logsService.findLogsLatest();
+        model.addAttribute("logs", logsLatest);
 //
 //        //查询最新的评论
-//        List<Comment> comments = commentService.findCommentsLatest();
-//        model.addAttribute("comments", comments);
+        List<Comment> comments = commentService.findCommentsLatest();
+        model.addAttribute("comments", comments);
 //
 //
 //        //文章阅读总数
-//        Long postViewsSum = postService.getPostViews();
-//        model.addAttribute("postViewsSum", postViewsSum);
+        Long postViewsSum = postService.getPostViews();
+        model.addAttribute("postViewsSum", postViewsSum);
 
 
 

@@ -4,6 +4,9 @@ import com.halo.blog.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 /**
  * @author tangwei
@@ -20,4 +23,13 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      * @return Page
      */
     Page<Post> findPostsByPostStatusAndPostType(Integer status, String postType, Pageable pageable);
+
+
+    /**
+     * 查询前五条文章
+     *
+     * @return List
+     */
+    @Query(value = "SELECT * FROM halo_post where post_type='post' ORDER BY post_date DESC LIMIT 5", nativeQuery = true)
+    List<Post> findTopFive();
 }

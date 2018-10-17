@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -56,5 +57,11 @@ public class PostServiceImpl implements PostService{
     @Override
     public Optional<Post> findByPostId(Long postId) {
         return postRepository.findById(postId);
+    }
+
+    @Override
+    public List<Post> findPostLatest() {
+        return postRepository.findTopFive();
+
     }
 }
