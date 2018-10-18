@@ -23,7 +23,7 @@
             <li>
                 <a data-pjax="true" href="/admin">
                     <i class="fa fa-dashboard"></i>
-                    <span>仪表盘></span>
+                    <span>仪表盘</span>
                 </a>
             </li>
             <li class="treeview">
