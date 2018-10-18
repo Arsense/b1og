@@ -37,12 +37,14 @@ public class ArticleTagDirective implements TemplateDirectiveModel {
                 case "postsCount":
                 environment.setVariable("postsCount", builder.build().wrap(postService.findPostByStatus(0, PostTypeEnum.POST_TYPE_POST.getDesc()).size()));
                     break;
+                case "archivesLess":
+                    environment.setVariable("archivesLess", builder.build().wrap(postService.findPostGroupByYear()));
+                    break;
                 default:
                     break;
 
             }
-
-            }
+        }
         templateDirectiveBody.render(environment.getOut());
 
     }

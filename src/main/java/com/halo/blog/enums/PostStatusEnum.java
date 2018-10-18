@@ -9,7 +9,6 @@ package com.halo.blog.enums;
  * @date : 2018/7/1
  */
 public enum PostStatusEnum {
-
     /**
      * 已发布
      */

@@ -24,7 +24,6 @@ public class ErrorPageController implements ErrorController {
     }
 
 
-
     /**
      * 渲染404，500
      *

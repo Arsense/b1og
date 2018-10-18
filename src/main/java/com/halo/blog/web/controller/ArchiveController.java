@@ -1,8 +1,13 @@
 package com.halo.blog.web.controller;
 
+import com.halo.blog.domain.Post;
 import com.halo.blog.enums.BaseConstant;
 import com.halo.blog.service.PostService;
 import com.halo.blog.web.controller.core.BaseController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +39,7 @@ public class ArchiveController extends BaseController {
      */
     @GetMapping
     public String archives(Model model) {
+
         return this.archives(model, 1);
     }
 
@@ -49,6 +55,8 @@ public class ArchiveController extends BaseController {
     public String archives(Model model,
                            @PathVariable(value = "year") String year,
                            @PathVariable(value = "month") String month) {
+
+
         return this.render("archives");
     }
 
@@ -62,6 +70,16 @@ public class ArchiveController extends BaseController {
     @GetMapping(value = "page/{page}")
     public String archives(Model model,
                            @PathVariable(value = "page") Integer page) {
+
+        //所有文章数据，分页，material主题适用
+        Sort sort = new Sort(Sort.Direction.DESC, "postDate");
+        Pageable pageable = PageRequest.of(page - 1, 5, sort);
+        Page<Post> posts = postService.findPostByStatus(0, "post", pageable);
+        if (null == posts) {
+            return this.renderNotFound();
+        }
+        model.addAttribute("is_archives",true);
+        model.addAttribute("posts", posts);
         return this.render("archives");
     }
 

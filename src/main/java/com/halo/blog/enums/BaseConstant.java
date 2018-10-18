@@ -9,7 +9,6 @@ import java.util.Map;
  */
 public class BaseConstant {
 
-
     /**
      * 所有设置选项（key,value）
      */

@@ -65,4 +65,7 @@ public class IndexController extends BaseController {
         model.addAttribute("rainbow", rainbow);
         return this.render("index");
     }
+
+
+
 }

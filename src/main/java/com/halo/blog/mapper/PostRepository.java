@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -24,7 +25,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      */
     Page<Post> findPostsByPostStatusAndPostType(Integer status, String postType, Pageable pageable);
 
-
     /**
      * 查询前五条文章
      *
@@ -33,8 +33,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query(value = "SELECT * FROM post where post_type='post' ORDER BY post_date DESC LIMIT 5", nativeQuery = true)
     List<Post> findTopFive();
 
-
-
     /**
      * 获取所有文章阅读量总和
      *
@@ -42,8 +40,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      */
     @Query(value = "select sum(post_views) from post", nativeQuery = true)
     Long getPostViewsSum();
-
-
     /**
      * 根据文章的状态查询
      *
@@ -53,7 +49,22 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      */
     List<Post> findPostsByPostStatusAndPostType(Integer status, String postType);
 
+    /**
+     * 查询文章归档信息 根据年份
+     *
+     * @return List
+     */
+    @Query(value = "select year(post_date) as year,count(*) as count from post where post_status=0 and post_type='post' group by year(post_date) order by year desc", nativeQuery = true)
+    List<Object[]> findPostGroupByYear();
 
 
+    /**
+     * 根据年份查询文章
+     *
+     * @param year year
+     * @return List
+     */
+    @Query(value = "select *,year(post_date) as year from post where post_status=0 and post_type='post' and year(post_date)=:year order by post_date desc", nativeQuery = true)
+    List<Post> findPostByYear(@Param("year") String year);
 
 }

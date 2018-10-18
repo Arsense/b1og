@@ -1,5 +1,6 @@
 package com.halo.blog.service;
 
+import com.halo.blog.domain.Archive;
 import com.halo.blog.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -85,5 +86,31 @@ public interface PostService {
      * @return List
      */
     List<Post> findPostByStatus(Integer status, String postType);
+
+
+    /**
+     * 根据文章状态查询 分页，用于后台管理
+     *
+     * @param status   0，1，2
+     * @param postType post or page
+     * @param pageable 分页信息
+     * @return Page
+     */
+    Page<Post> findPostByStatus(Integer status, String postType, Pageable pageable);
+
+    /**
+     * 查询归档信息 根据年份
+     *
+     * @return List
+     */
+    List<Archive> findPostGroupByYear();
+
+    /**
+     * 根据年份查询文章
+     *
+     * @param year year
+     * @return List
+     */
+    List<Post> findPostByYear(String year);
 
 }
