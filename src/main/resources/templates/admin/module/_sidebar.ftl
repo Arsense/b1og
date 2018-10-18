@@ -5,7 +5,7 @@
                 <img src="<#if user.userAvatar?if_exists!="">${user.userAvatar?if_exists}<#else >/static/images/default.png</#if>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>${user.userDisplayName?if_exists}</p><a href="/admin/profile"><i class="fa fa-circle text-success"></i><@spring.message code='admin.menu.profile' /></a>
+                <p>${user.userDisplayName?if_exists}</p><a href="/admin/profile"><i class="fa fa-circle text-success"></i>个人资料</a>
             </div>
         </div>
         <form action="#" method="get" class="sidebar-form">
@@ -23,85 +23,85 @@
             <li>
                 <a data-pjax="true" href="/admin">
                     <i class="fa fa-dashboard"></i>
-                    <span><@spring.message code='admin.menu.dashboard' /></span>
+                    <span>仪表盘></span>
                 </a>
             </li>
             <li class="treeview">
                 <a data-pjax="true" href="#">
                     <i class="fa  fa-book"></i>
-                    <span><@spring.message code='admin.menu.posts' /></span>
+                    <span>文章</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu" style="">
-                    <li><a data-pjax="true" href="/admin/posts"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.all-posts' /></a></li>
-                    <li><a data-pjax="false" href="/admin/posts/new"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.new-post' /></a></li>
-                    <li><a data-pjax="true" href="/admin/category"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.categories' /></a></li>
-                    <li><a data-pjax="true" href="/admin/tag"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.tags' /></a></li>
+                    <li><a data-pjax="true" href="/admin/posts"><i class="fa fa-circle-o"></i>所有文章</a></li>
+                    <li><a data-pjax="false" href="/admin/posts/new"><i class="fa fa-circle-o"></i>写文章</a></li>
+                    <li><a data-pjax="true" href="/admin/category"><i class="fa fa-circle-o"></i>分类目录</a></li>
+                    <li><a data-pjax="true" href="/admin/tag"><i class="fa fa-circle-o"></i>标签></a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a data-pjax="true" href="#">
                     <i class="fa fa-desktop"></i>
-                    <span><@spring.message code='admin.menu.pages' /></span>
+                    <span>页面</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a data-pjax="true" href="/admin/page"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.all-pages' /></a></li>
-                    <li><a data-pjax="false" href="/admin/page/new"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.new-page' /></a></li>
+                    <li><a data-pjax="true" href="/admin/page"><i class="fa fa-circle-o"></i>所有页面</a></li>
+                    <li><a data-pjax="false" href="/admin/page/new"><i class="fa fa-circle-o"></i>新建页面</a></li>
                 </ul>
             </li>
             <li>
                 <a data-pjax="true" href="/admin/attachments">
                     <i class="fa fa-camera"></i>
-                    <span><@spring.message code='admin.menu.attachments' /></span>
+                    <span>附件</span>
                 </a>
             </li>
             <li>
                 <a data-pjax="true" href="/admin/comments">
                     <i class="fa fa-comment"></i>
-                    <span><@spring.message code='admin.menu.comments' /></span>
+                    <span>评论</span>
                     <span class="pull-right-container">
-                        <#if newComments?size gt 0>
-                            <span class="label label-primary pull-right">${newComments?size}</span>
-                        </#if>
+                        <#--<#if newComments?size gt 0>-->
+                            <#--<span class="label label-primary pull-right">${newComments?size}</span>-->
+                        <#--</#if>-->
                     </span>
                 </a>
             </li>
             <li class="treeview">
                 <a data-pjax="true" href="#">
                     <i class="fa fa-paint-brush"></i>
-                    <span><@spring.message code='admin.menu.appearance' /></span>
+                    <span>外观</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a data-pjax="true" href="/admin/themes"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.themes' /></a></li>
-                    <li><a data-pjax="true" href="/admin/menus"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.menus' /></a></li>
-                    <li><a data-pjax="false" href="/admin/themes/editor"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.edit-theme' /></a></li>
+                    <li><a data-pjax="true" href="/admin/themes"><i class="fa fa-circle-o"></i>主题</a></li>
+                    <li><a data-pjax="true" href="/admin/menus"><i class="fa fa-circle-o"></i>菜单</a></li>
+                    <li><a data-pjax="false" href="/admin/themes/editor"><i class="fa fa-circle-o"></i>主题编辑</a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a data-pjax="true" href="#">
                     <i class="fa fa-user-o"></i>
-                    <span><@spring.message code='admin.menu.user' /></span>
+                    <span>用户</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a data-pjax="true" href="/admin/profile"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.profile' /></a></li>
+                    <li><a data-pjax="true" href="/admin/profile"><i class="fa fa-circle-o"></i>个人资料</a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a data-pjax="true" href="#">
                     <i class="fa fa-cog"></i>
-                    <span><@spring.message code='admin.menu.settings' /></span>
+                    <span>设置</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a data-pjax="true" href="/admin/option"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.blog-settings' /></a></li>
-                    <li><a data-pjax="true" href="/admin/backup"><i class="fa fa-circle-o"></i><@spring.message code='admin.menu.blog-backup' /></a></li>
+                    <li><a data-pjax="true" href="/admin/option"><i class="fa fa-circle-o"></i>博客设置</a></li>
+                    <li><a data-pjax="true" href="/admin/backup"><i class="fa fa-circle-o"></i>博客备份</a></li>
                 </ul>
             </li>
         </ul>

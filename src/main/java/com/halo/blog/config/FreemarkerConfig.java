@@ -4,6 +4,7 @@ import com.halo.blog.service.OptionsService;
 import com.halo.blog.service.UserService;
 import freemarker.template.TemplateModelException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -26,22 +27,27 @@ public class FreemarkerConfig {
     @Resource
     private UserService userService;
 
+    @Resource
+    private CommonTagDirective commonTagDirective;
+
+    @Resource
+    private ArticleTagDirective articleTagDirective;
+
 
 
     /**
-     * 前端页面配置
+     * 前端页面配置 一直要用的系统加载的
      */
     @PostConstruct
     public void setSharedVariable() {
         try{
             configuration.setSharedVariable("options", optionsService.findAllOptions());
             configuration.setSharedVariable("user", userService.findUser());
-
-            configuration.setSharedVariable("commonTag", "");
+            configuration.setSharedVariable("commonTag", commonTagDirective);
+            configuration.setSharedVariable("articleTag", articleTagDirective);
 
         }catch (TemplateModelException e){
             log.error("自定义标签加载失败：{}", e.getMessage());
-
         }
 
     }

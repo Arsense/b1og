@@ -74,4 +74,16 @@ public interface PostService {
      * @return Long
      */
     Long getPostViews();
+
+
+
+    /**
+     * 根据文章状态查询
+     *
+     * @param status   0，1，2
+     * @param postType post or page
+     * @return List
+     */
+    List<Post> findPostByStatus(Integer status, String postType);
+
 }

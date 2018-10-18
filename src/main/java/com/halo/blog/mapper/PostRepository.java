@@ -44,6 +44,15 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Long getPostViewsSum();
 
 
+    /**
+     * 根据文章的状态查询
+     *
+     * @param status   0,1,2
+     * @param postType post or page
+     * @return List
+     */
+    List<Post> findPostsByPostStatusAndPostType(Integer status, String postType);
+
 
 
 

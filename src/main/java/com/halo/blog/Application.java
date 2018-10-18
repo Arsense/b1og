@@ -1,5 +1,6 @@
 package com.halo.blog;
 
+import com.halo.blog.enums.PropertyEnum;
 import com.halo.blog.service.OptionsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class Application {
 		String serverPort = context.getEnvironment().getProperty("server.port");
 		//输入访问链接
 		log.info("Clay started at http://localhost:" + serverPort);
+
 	}
+
 
 }

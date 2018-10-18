@@ -146,7 +146,7 @@ public class AdminController {
             Integer errorCount = userService.updateUserLoginError();
 
             //超过五次禁用账户
-            if (errorCount >= 5) {
+            if (errorCount >= 10) {
                 userService.updateUserLoginEnable("false");
             }
             Object[] args = {(5 - errorCount)};

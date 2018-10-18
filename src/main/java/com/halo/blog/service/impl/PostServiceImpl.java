@@ -70,4 +70,10 @@ public class PostServiceImpl implements PostService{
         return postRepository.getPostViewsSum();
 
     }
+
+    @Override
+    public List<Post> findPostByStatus(Integer status, String postType) {
+        return postRepository.findPostsByPostStatusAndPostType(status, postType);
+
+    }
 }

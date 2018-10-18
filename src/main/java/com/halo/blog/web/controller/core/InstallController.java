@@ -140,9 +140,19 @@ public class InstallController {
         //开始设置系统属性
 
         optionsService.saveOption(PropertyEnum.IS_INSTALL.getProp(), "true");
+
+        //保存博客标题和博客地址设置
+        optionsService.saveOption(PropertyEnum.BLOG_TITLE.getProp(), blogTitle);
+        optionsService.saveOption(PropertyEnum.BLOG_URL.getProp(), blogUrl);
+
         BaseConstant.OPTIONS.clear();
         BaseConstant.OPTIONS = optionsService.findAllOptions();
 
+
+
         return true;
     }
+
+
+
 }

@@ -14,7 +14,18 @@ public enum PropertyEnum {
     /**
      * 首页文章条数
      */
-    INDEX_POSTS("index_posts");
+    INDEX_POSTS("index_posts"),
+
+    /**
+     * 博客标题
+     */
+    BLOG_TITLE("blog_title"),
+
+    /**
+     * 博客地址
+     */
+    BLOG_URL("blog_url");
+
 
     private String prop;
 
