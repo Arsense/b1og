@@ -20,19 +20,14 @@ public class FreemarkerConfig {
     //创建一个freemarker.template.Configuration实例，它是存储 FreeMarker 应用级设置的核心部分
     @Resource
     private freemarker.template.Configuration configuration;
-
     @Resource
     private OptionsService optionsService;
-
     @Resource
     private UserService userService;
-
     @Resource
     private CommonTagDirective commonTagDirective;
-
     @Resource
     private ArticleTagDirective articleTagDirective;
-
 
 
     /**

@@ -281,49 +281,49 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <#if comments??>
-                                    <#list comments as comment>
-                                        <tr>
-                                            <td>${comment.commentAuthor}</td>
-                                            <td>
-                                                <#if comment.post.postType=="post">
-                                                    <a target="_blank" href="/archives/${comment.post.getPostUrl()}">${comment.post.postTitle}</a>
-                                                <#else>
-                                                    <a target="_blank" href="/p/${comment.post.getPostUrl()}">${comment.post.postTitle}</a>
-                                                </#if>
-                                            </td>
-                                            <td>
-                                                <#switch comment.commentStatus>
-                                                    <#case 0>
-                                                    ${comment.commentContent}
-                                                    <#break>
-                                                    <#case 1>
-                                                    ${comment.commentContent}
-                                                    <#break>
-                                                    <#case 2>
-                                                    ${comment.commentContent}
-                                                    <#break>
-                                                </#switch>
-                                            </td>
-                                            <td>
-                                                <#switch comment.commentStatus>
-                                                <#case 0>
-                                                <span class="label bg-green">已发布</span>
-                                                <#break >
-                                                <#case 1>
-                                                <span class="label bg-yellow">待审核/span>
-                                                <#break >
-                                                <#case 2>
-                                                <span class="label bg-red">回收站</span>
-                                                <#break >
-                                                </#switch>
-                                            </td>
-                                            <td>${comment.commentDate?string("yyyy-MM-dd HH:mm")}</td>
-                                        </tr>
-                                    </#list>
-                                    <#else>
-                                        <tr><td>暂无数据</td></tr>
-                                    </#if>
+                                    <#--<#if comments??>-->
+                                    <#--<#list comments as comment>-->
+                                        <#--<tr>-->
+                                            <#--<td>${comment.commentAuthor}</td>-->
+                                            <#--<td>-->
+                                                <#--<#if comment.post.postType=="post">-->
+                                                    <#--<a target="_blank" href="/archives/${comment.post.getPostUrl()}">${comment.post.postTitle}</a>-->
+                                                <#--<#else>-->
+                                                    <#--<a target="_blank" href="/p/${comment.post.getPostUrl()}">${comment.post.postTitle}</a>-->
+                                                <#--</#if>-->
+                                            <#--</td>-->
+                                            <#--<td>-->
+                                                <#--<#switch comment.commentStatus>-->
+                                                    <#--<#case 0>-->
+                                                    <#--${comment.commentContent}-->
+                                                    <#--<#break>-->
+                                                    <#--<#case 1>-->
+                                                    <#--${comment.commentContent}-->
+                                                    <#--<#break>-->
+                                                    <#--<#case 2>-->
+                                                    <#--${comment.commentContent}-->
+                                                    <#--<#break>-->
+                                                <#--</#switch>-->
+                                            <#--</td>-->
+                                            <#--<td>-->
+                                                <#--<#switch comment.commentStatus>-->
+                                                <#--<#case 0>-->
+                                                <#--<span class="label bg-green">已发布</span>-->
+                                                <#--<#break >-->
+                                                <#--<#case 1>-->
+                                                <#--<span class="label bg-yellow">待审核/span>-->
+                                                <#--<#break >-->
+                                                <#--<#case 2>-->
+                                                <#--<span class="label bg-red">回收站</span>-->
+                                                <#--<#break >-->
+                                                <#--</#switch>-->
+                                            <#--</td>-->
+                                            <#--<td>${comment.commentDate?string("yyyy-MM-dd HH:mm")}</td>-->
+                                        <#--</tr>-->
+                                    <#--</#list>-->
+                                    <#--<#else>-->
+                                        <#--<tr><td>暂无数据</td></tr>-->
+                                    <#--</#if>-->
                                 </tbody>
                             </table>
                         </div>
@@ -387,16 +387,16 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="blog-data">博客数据</h4>
                     </div>
-                    <div class="modal-body">
-                        <p>「${options.blog_title?if_exists}」已经运行<span id="blogStartDay"></span><天了</p>
-                        <p>在此期间</p>
-                        <p>累计发表了&nbsp;<@articleTag method="postsCount">${postsCount?default(0)}</@articleTag>&nbsp;篇文章</p>
-                        <p>累计创建了&nbsp;<@commonTag method="tags">${tags?size}</@commonTag>&nbsp;个标签。</p>
-                        <p>累计获得了&nbsp;${commentCount}&nbsp;条评论。</p>
-                        <p>累计添加了&nbsp;<@commonTag method="links">${links?size}</@commonTag>&nbsp;个友链。</p>
-                        <p>文章总访问&nbsp;${postViewsSum?default(0L)}&nbsp;次。</p>
-                        <p>次。</p>
-                    </div>
+                    <#--<div class="modal-body">-->
+                        <#--<p>「${options.blog_title?if_exists}」已经运行<span id="blogStartDay"></span><天了</p>-->
+                        <#--<p>在此期间</p>-->
+                        <#--<p>累计发表了&nbsp;<@articleTag method="postsCount">${postsCount?default(0)}</@articleTag>&nbsp;篇文章</p>-->
+                        <#--<p>累计创建了&nbsp;<@commonTag method="tags">${tags?size}</@commonTag>&nbsp;个标签。</p>-->
+                        <#--<p>累计获得了&nbsp;${commentCount}&nbsp;条评论。</p>-->
+                        <#--<p>累计添加了&nbsp;<@commonTag method="links">${links?size}</@commonTag>&nbsp;个友链。</p>-->
+                        <#--<p>文章总访问&nbsp;${postViewsSum?default(0L)}&nbsp;次。</p>-->
+                        <#--<p>次。</p>-->
+                    <#--</div>-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
                     </div>
