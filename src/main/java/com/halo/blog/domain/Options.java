@@ -3,7 +3,6 @@ package com.halo.blog.domain;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
-
 /**
  * <pre>
  *     系统设置

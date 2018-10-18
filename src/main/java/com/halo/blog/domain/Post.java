@@ -35,7 +35,6 @@ public class Post implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-
     /**
      * 文章标题
      */
@@ -71,24 +70,24 @@ public class Post implements Serializable {
      * 文章摘要
      */
     private String postSummary;
-//    /**
-//     * 文章所属分类
-//     */
-//    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
-//    @JoinTable(name = "halo_posts_categories",
-//            joinColumns = {@JoinColumn(name = "post_id", nullable = false)},
-//            inverseJoinColumns = {@JoinColumn(name = "cate_id", nullable = false)})
-//    private List<Category> categories = new ArrayList<>();
+    /**
+     * 文章所属分类
+     */
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(name = "posts_categories",
+            joinColumns = {@JoinColumn(name = "post_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "cate_id", nullable = false)})
+    private List<Category> categories = new ArrayList<>();
 
 
-//    /**
-//     * 文章所属标签
-//     */
-//    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
-//    @JoinTable(name = "halo_posts_tags",
-//            joinColumns = {@JoinColumn(name = "post_id", nullable = false)},
-//            inverseJoinColumns = {@JoinColumn(name = "tag_id", nullable = false)})
-//    private List<Tag> tags = new ArrayList<>();
+    /**
+     * 文章所属标签
+     */
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(name = "posts_tags",
+            joinColumns = {@JoinColumn(name = "post_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id", nullable = false)})
+    private List<Tag> tags = new ArrayList<>();
 
 
     /**
@@ -252,5 +251,21 @@ public class Post implements Serializable {
 
     public void setAllowComment(Integer allowComment) {
         this.allowComment = allowComment;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }

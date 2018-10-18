@@ -1,9 +1,12 @@
 package com.halo.blog.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author tangwei
@@ -37,9 +40,9 @@ public class Category implements Serializable {
      */
     private String cateDesc;
 
-//    @ManyToMany(mappedBy = "categories")
-//    @JsonIgnore
-//    private List<Post> posts = new ArrayList<>();
+    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
+    private List<Post> posts = new ArrayList<>();
 
 
     public Long getCateId() {

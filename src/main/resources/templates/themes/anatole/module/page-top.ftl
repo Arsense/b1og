@@ -1,12 +1,12 @@
 <div class="page-top animated fadeInDown">
     <div class="nav">
-        <#--<@commonTag method="menus">-->
-            <#--<#list menus?sort_by('menuSort') as menu>-->
-                <#--<li>-->
-                    <#--<a href="${menu.menuUrl}" target="${menu.menuTarget?if_exists}">${menu.menuName} </a>-->
-                <#--</li>-->
-            <#--</#list>-->
-        <#--</@commonTag>-->
+        <@commonTag method="menus">
+            <#list menus?sort_by('menuSort') as menu>
+                <li>
+                    <a href="${menu.menuUrl}" target="${menu.menuTarget?if_exists}">${menu.menuName} </a>
+                </li>
+            </#list>
+        </@commonTag>
     </div>
     <div class="information">
         <div class="back_btn">

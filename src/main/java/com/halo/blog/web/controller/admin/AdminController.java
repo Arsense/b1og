@@ -48,7 +48,6 @@ public class AdminController {
     private LogsService logsService;
 
 
-
     /**
      * 请求后台页面 登陆成功
      *
@@ -81,7 +80,6 @@ public class AdminController {
         return "admin/admin_index";
     }
 
-
     /**
      * 处理跳转到登录页的请求
      *
@@ -97,6 +95,7 @@ public class AdminController {
         }
         return "admin/admin_login";
     }
+
 
     /**
      * 验证登录信息

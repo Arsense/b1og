@@ -1,10 +1,11 @@
-package com.halo.blog.web.controller.core;
+package com.halo.blog.web.controller;
 
 import cn.hutool.core.util.PageUtil;
 import com.halo.blog.domain.Post;
 import com.halo.blog.enums.BaseConstant;
 import com.halo.blog.enums.PropertyEnum;
 import com.halo.blog.service.PostService;
+import com.halo.blog.web.controller.core.BaseController;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +25,7 @@ import javax.annotation.Resource;
 
 @Controller
 @RequestMapping(value = {"/", "index"})
-public class IndexController extends BaseController{
+public class IndexController extends BaseController {
 
     @Resource
     private PostService postService;

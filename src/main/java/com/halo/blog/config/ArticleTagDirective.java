@@ -28,7 +28,7 @@ public class ArticleTagDirective implements TemplateDirectiveModel {
     private PostService postService;
 
     @Override
-    public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateModelException {
+    public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {
 
         DefaultObjectWrapperBuilder builder = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
         if (map.containsKey(METHOD_KEY)){
@@ -36,11 +36,14 @@ public class ArticleTagDirective implements TemplateDirectiveModel {
             switch (method) {
                 case "postsCount":
                 environment.setVariable("postsCount", builder.build().wrap(postService.findPostByStatus(0, PostTypeEnum.POST_TYPE_POST.getDesc()).size()));
-                break;
+                    break;
+                default:
+                    break;
 
             }
 
             }
+        templateDirectiveBody.render(environment.getOut());
 
     }
 }

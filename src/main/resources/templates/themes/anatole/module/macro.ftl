@@ -79,7 +79,7 @@
 	  xhr.send();
     </#if>
 </script>
-<#--<@statistics></@statistics>-->
+<@statistics></@statistics>
 </body>
 </html>
 </#macro>
