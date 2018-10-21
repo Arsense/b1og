@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -105,5 +106,27 @@ public class PostServiceImpl implements PostService{
     @Override
     public List<Post> findPostByYear(String year) {
         return postRepository.findPostByYear(year);
+    }
+
+    @Override
+    public Post findByPostUrl(String postUrl, String postType) {
+        return postRepository.findPostByPostUrlAndPostType(postUrl, postType);
+
+    }
+
+    @Override
+    public List<Post> findByPostDateAfter(Date postDate) {
+        return postRepository.findByPostDateAfterAndPostStatusAndPostTypeOrderByPostDateDesc(postDate,0,"post");
+    }
+
+    @Override
+    public List<Post> findByPostDateBefore(Date postDate) {
+        return postRepository.findByPostDateBeforeAndPostStatusAndPostTypeOrderByPostDateAsc(postDate, 0, "post");
+    }
+
+    @Override
+    public void updatePostView(Post post) {
+        post.setPostViews(post.getPostViews() + 1);
+        postRepository.save(post);
     }
 }

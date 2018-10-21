@@ -1,9 +1,19 @@
 package com.halo.blog.web.controller;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.PageUtil;
+import com.halo.blog.domain.Comment;
+import com.halo.blog.domain.ListPage;
 import com.halo.blog.domain.Post;
+import com.halo.blog.domain.Tag;
 import com.halo.blog.enums.BaseConstant;
+import com.halo.blog.enums.PropertyEnum;
+import com.halo.blog.service.CommentService;
 import com.halo.blog.service.PostService;
+import com.halo.blog.util.CommentUtil;
 import com.halo.blog.web.controller.core.BaseController;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <pre>
@@ -31,6 +44,9 @@ public class ArchiveController extends BaseController {
     @Resource
     private PostService postService;
 
+    @Resource
+    private CommentService commentService;
+
     /**
      * 文章归档
      *
@@ -39,7 +55,6 @@ public class ArchiveController extends BaseController {
      */
     @GetMapping
     public String archives(Model model) {
-
         return this.archives(model, 1);
     }
 
@@ -93,6 +108,59 @@ public class ArchiveController extends BaseController {
     @GetMapping(value = "{postUrl}")
     public String getPost(@PathVariable String postUrl,
                           @RequestParam(value = "cp",defaultValue = "1") Integer cp, Model model){
+        Post post = postService.findByPostUrl(postUrl, "post");
+        if (null == post || !post.getPostStatus().equals(0)) {
+            return this.renderNotFound();
+        }
+        //获得当前文章的发布日期
+        Date postDate = post.getPostDate();
+        //查询当前文章日期之前的所有文章
+        List<Post> beforePosts = postService.findByPostDateBefore(postDate);
+        //查询当前文章日期之后的所有文章
+        List<Post> afterPosts = postService.findByPostDateAfter(postDate);
+
+        if (null != beforePosts && beforePosts.size() > 0) {
+            model.addAttribute("beforePost", beforePosts.get(beforePosts.size() - 1));
+        }
+        if (null != afterPosts && afterPosts.size() > 0) {
+            model.addAttribute("afterPost", afterPosts.get(afterPosts.size() - 1));
+        }
+
+        List<Comment> comments = null;
+
+        //查询评论是否需要审核
+        if (StringUtils.equals(BaseConstant.OPTIONS.get(PropertyEnum.COMMENT_NEED_CHECK.getProp()), "true") || BaseConstant.OPTIONS.get(PropertyEnum.COMMENT_NEED_CHECK.getProp()) == null) {
+            comments = commentService.findCommentsByPostAndCommentStatus(post,0);
+        } else {
+            comments = commentService.findCommentsByPostAndCommentStatusNot(post,2);
+        }
+        //获取文章的标签用作keywords
+        List<Tag> tags = post.getTags();
+        List<String> tagWords = new ArrayList<>();
+        if (tags != null) {
+            for (Tag tag : tags) {
+                tagWords.add(tag.getTagName());
+            }
+        }
+        //默认显示10条
+        Integer size = 10;
+        //获取每页评论条数
+        if (!StringUtils.isBlank(BaseConstant.OPTIONS.get(PropertyEnum.INDEX_COMMENTS.getProp()))) {
+            size = Integer.parseInt(BaseConstant.OPTIONS.get(PropertyEnum.INDEX_COMMENTS.getProp()));
+        }
+        //评论分页
+        ListPage<Comment> commentsPage = new ListPage<Comment>(CommentUtil.getComments(comments),cp, size);
+
+        int[] rainbow = PageUtil.rainbow(cp, commentsPage.getTotalPage(), 3);
+
+        model.addAttribute("is_post",true);
+        model.addAttribute("post", post);
+        model.addAttribute("comments", commentsPage);
+        model.addAttribute("commentsCount", comments.size());
+        model.addAttribute("rainbow", rainbow);
+        model.addAttribute("tagWords", CollUtil.join(tagWords, ","));
+        postService.updatePostView(post); //修改文章阅读量
+
         return this.render("post");
     }
 

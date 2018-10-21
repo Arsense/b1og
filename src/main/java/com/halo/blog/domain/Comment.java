@@ -76,10 +76,23 @@ public class Comment {
     private List<Comment> childComments;
 
     /**
+     * 上一级
+     */
+    private Long commentParent = 0L;
+
+    /**
      * 评论状态，0：正常，1：待审核，2：回收站
      */
     private Integer commentStatus = 1;
 
+
+    public Long getCommentParent() {
+        return commentParent;
+    }
+
+    public void setCommentParent(Long commentParent) {
+        this.commentParent = commentParent;
+    }
 
     public Long getCommentId() {
         return commentId;

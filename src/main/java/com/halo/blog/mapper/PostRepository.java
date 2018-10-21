@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -66,5 +67,37 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      */
     @Query(value = "select *,year(post_date) as year from post where post_status=0 and post_type='post' and year(post_date)=:year order by post_date desc", nativeQuery = true)
     List<Post> findPostByYear(@Param("year") String year);
+
+
+    /**
+     * 根据路径查询文章
+     *
+     * @param postUrl  路径
+     * @param postType post or page
+     * @return Post
+     */
+    Post findPostByPostUrlAndPostType(String postUrl, String postType);
+
+
+    /**
+     * 查询之后文章
+     *
+     * @param postDate   发布时间
+     * @param postStatus 0，1，2
+     * @param postType   post or page
+     * @return List
+     */
+    List<Post> findByPostDateAfterAndPostStatusAndPostTypeOrderByPostDateDesc(Date postDate, Integer postStatus, String postType);
+
+
+    /**
+     * 查询之前的文章
+     *
+     * @param postDate   发布时间
+     * @param postStatus 0，1，2
+     * @param postType   post or page
+     * @return List
+     */
+    List<Post> findByPostDateBeforeAndPostStatusAndPostTypeOrderByPostDateAsc(Date postDate, Integer postStatus, String postType);
 
 }

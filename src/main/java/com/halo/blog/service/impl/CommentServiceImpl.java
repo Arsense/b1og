@@ -1,6 +1,7 @@
 package com.halo.blog.service.impl;
 
 import com.halo.blog.domain.Comment;
+import com.halo.blog.domain.Post;
 import com.halo.blog.mapper.CommentRepository;
 import com.halo.blog.service.CommentService;
 import org.springframework.data.domain.Page;
@@ -38,5 +39,24 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> findCommentsLatest() {
         return commentRepository.findTopFive();
+    }
+
+    @Override
+    public List<Comment> findCommentsByPostAndCommentStatus(Post post, Integer status) {
+        return commentRepository.findCommentsByPostAndCommentStatus(post, status);
+
+    }
+
+
+    /**
+     * 根据文章和评论状态（为不查询的）查询评论 不分页
+     *
+     * @param post   post
+     * @param status status
+     * @return List
+     */
+    @Override
+    public List<Comment> findCommentsByPostAndCommentStatusNot(Post post, Integer status) {
+        return commentRepository.findCommentsByPostAndCommentStatusNot(post, status);
     }
 }

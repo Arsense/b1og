@@ -1,6 +1,7 @@
 package com.halo.blog.service;
 
 import com.halo.blog.domain.Comment;
+import com.halo.blog.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -46,4 +47,25 @@ public interface CommentService {
      * @return List
      */
     List<Comment> findCommentsLatest();
+
+
+    /**
+     * 根据文章和评论状态查询评论 不分页
+     *
+     * @param post   post
+     * @param status status
+     * @return List
+     */
+    List<Comment> findCommentsByPostAndCommentStatus(Post post, Integer status);
+
+
+    /**
+     * 根据文章和评论状态（为不查询的）查询评论 不分页
+     *
+     * @param post   post
+     * @param status status
+     * @return List
+     */
+    List<Comment> findCommentsByPostAndCommentStatusNot(Post post, Integer status);
+
 }

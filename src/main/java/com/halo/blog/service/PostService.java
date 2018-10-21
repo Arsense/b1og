@@ -5,6 +5,7 @@ import com.halo.blog.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -112,5 +113,42 @@ public interface PostService {
      * @return List
      */
     List<Post> findPostByYear(String year);
+
+
+    /**
+     * 根据文章路径查询
+     *
+     * @param postUrl  路径
+     * @param postType post or page
+     * @return Post
+     */
+    Post findByPostUrl(String postUrl, String postType);
+
+
+    /**
+     * 查询Id之后的文章
+     *
+     * @param postDate postDate
+     * @return List
+     */
+    List<Post> findByPostDateAfter(Date postDate);
+
+    /**
+     * 查询Id之前的文章
+     *
+     * @param postDate postDate
+     * @return List
+     */
+    List<Post> findByPostDateBefore(Date postDate);
+
+
+    /**
+     * 修改文章阅读量
+     *
+     * @param post post
+     */
+    void updatePostView(Post post);
+
+
 
 }
