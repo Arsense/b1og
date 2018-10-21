@@ -172,7 +172,7 @@
                 <#if options.widget_postcount?default("true")=="true">
                 <div class="col-lg-3 col-xs-6" id="widgetPostCountBody">
                     <div class="small-box bg-aqua">
-                        <div class="inner"><h3><@articleTag method="postsCount">${postsCount?default(0)}</@articleTag></h3><p文章</p></div>
+                        <div class="inner"><h3><@articleTag method="postsCount">${postsCount?default(0)}</@articleTag></h3><p>文章</p></div>
                         <div class="icon"><i class="ion ion-bag"></i></div>
                         <a data-pjax="true" href="/admin/posts" class="small-box-footer">查看所有 <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
@@ -199,7 +199,7 @@
                 <#if options.widget_daycount?default("true")=="true">
                 <div class="col-lg-3 col-xs-6" id="widgetDayCountBody">
                     <div class="small-box bg-red">
-                        <div class="inner"><h3 id="blogStart"></h3><p>成立天数</p></div>
+                        <div class="inner"><h3 id="blogStart">1</h3><p>成立天数</p></div>
                         <div class="icon"><i class="ion ion-pie-graph"></i></div>
                         <a href="#" class="small-box-footer" data-toggle="modal" data-target="#blogInfo">${options.blog_start?default('0000-00-00')} <i class="fa fa-star"></i></a>
                     </div>
