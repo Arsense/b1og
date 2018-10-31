@@ -47,7 +47,6 @@ public class AdminController {
     @Resource
     private LogsService logsService;
 
-
     /**
      * 请求后台页面 登陆成功
      *
@@ -71,8 +70,6 @@ public class AdminController {
 //        //查询最新的评论
         List<Comment> comments = commentService.findCommentsLatest();
         model.addAttribute("comments", comments);
-//
-//
 //        //文章阅读总数
         Long postViewsSum = postService.getPostViews();
         model.addAttribute("postViewsSum", postViewsSum);

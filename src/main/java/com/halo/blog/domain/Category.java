@@ -76,4 +76,15 @@ public class Category implements Serializable {
     public void setCateDesc(String cateDesc) {
         this.cateDesc = cateDesc;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "cateId=" + cateId +
+                ", cateName='" + cateName + '\'' +
+                ", cateUrl='" + cateUrl + '\'' +
+                ", cateDesc='" + cateDesc + '\'' +
+                ", posts=" + posts +
+                '}';
+    }
 }

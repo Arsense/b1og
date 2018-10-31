@@ -61,7 +61,6 @@ public class MvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/admin/getLogin") //登录的几个页面不拦截
                 .excludePathPatterns("/static/**");
 
-
     }
 
     /**
