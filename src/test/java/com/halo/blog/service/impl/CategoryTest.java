@@ -29,7 +29,6 @@ public class CategoryTest extends BaseConfigTest {
         category.setCateUrl("/test");
         categoryService.saveByCategory(category);
         List<Category> categories =  categoryService.findAllCategories();
-
     }
 
     /**

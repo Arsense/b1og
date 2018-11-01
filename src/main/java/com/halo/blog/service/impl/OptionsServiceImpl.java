@@ -21,6 +21,19 @@ public class OptionsServiceImpl implements OptionsService {
     @Resource
     private OptionsRepository optionsRepository;
 
+
+    /**
+     * 批量保存设置
+     *
+     * @param options options
+     */
+    @Override
+    public void saveOptions(Map<String, String> options) {
+        if (null != options && !options.isEmpty()) {
+            options.forEach((k, v) -> saveOption(k, v));
+        }
+    }
+
     @Override
     public void saveOption(String key, String value) {
         Options options = null;

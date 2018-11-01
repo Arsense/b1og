@@ -31,5 +31,5 @@ public interface OptionsService {
      * @param options options
      */
     void removeOption(Options options);
-
+    void saveOptions(Map<String, String> options);
 }

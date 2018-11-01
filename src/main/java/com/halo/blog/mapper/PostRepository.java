@@ -100,4 +100,13 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      */
     List<Post> findByPostDateBeforeAndPostStatusAndPostTypeOrderByPostDateAsc(Date postDate, Integer postStatus, String postType);
 
+
+    /**
+     * 查询所有文章 根据文章类型
+     *
+     * @param postType post or page
+     * @return List
+     */
+    List<Post> findPostsByPostType(String postType);
+
 }

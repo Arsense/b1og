@@ -129,4 +129,9 @@ public class PostServiceImpl implements PostService{
         post.setPostViews(post.getPostViews() + 1);
         postRepository.save(post);
     }
+
+    @Override
+    public List<Post> findAllPosts(String postType) {
+        return postRepository.findPostsByPostType(postType);
+    }
 }

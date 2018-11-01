@@ -149,6 +149,13 @@ public interface PostService {
      */
     void updatePostView(Post post);
 
+    /**
+     * 获取文章列表 不分页
+     *
+     * @param postType post or page
+     * @return List
+     */
+    List<Post> findAllPosts(String postType);
 
 
 }
